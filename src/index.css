@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom styles */
+/* Use Google Fonts loaded in index.html */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .section-padding {
@@ -26,4 +29,47 @@ body {
     padding-left: 6rem;
     padding-right: 6rem;
   }
+}
+
+/* Decorative animated blobs used in Hero */
+.blob {
+  position: absolute;
+  filter: blur(36px);
+  opacity: 0.8;
+  transform: translateZ(0);
+  mix-blend-mode: multiply;
+}
+
+@keyframes floatY {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-18px) translateX(6px) scale(1.02); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+.animate-float {
+  animation: floatY 6s ease-in-out infinite;
+}
+
+.glass-card {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px) saturate(120%);
+  border: 1px solid rgba(59,130,246,0.08);
+}
+
+.gradient-btn {
+  background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg,#06b6d4,#3b82f6 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fade-in-up {
+  opacity: 0; transform: translateY(8px); animation: fadeUp .6s ease forwards;
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
 }
