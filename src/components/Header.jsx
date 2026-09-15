@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const GithubIcon = ({ className = 'w-5 h-5' }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -12,33 +12,74 @@ const LinkedInIcon = ({ className = 'w-5 h-5' }) => (
   </svg>
 );
 
-const MailIcon = ({ className = 'w-5 h-5' }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-  </svg>
-);
+const navLinks = [
+  { href: '#about', label: 'about' },
+  { href: '#skills', label: 'skills' },
+  { href: '#projects', label: 'projects' },
+  { href: '#experience', label: 'experience' },
+  { href: '#contact', label: 'contact' },
+];
 
 const Header = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="fixed top-0 w-full z-50">
-      <div className="w-full bg-gradient-to-r from-green-500 via-blue-500 to-primary py-1 flex justify-center items-center text-sm text-white font-medium">Available for new opportunities — open to contracts</div>
-      <div className="bg-white/60 backdrop-blur-md border-b border-primary/10">
+      <div className="w-full bg-accent/10 border-b border-accent/20 py-1.5 flex justify-center items-center text-xs font-mono text-accent gap-2">
+        <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
+        available for new opportunities — open to contracts
+      </div>
+      <div className="bg-bg/80 backdrop-blur-md border-b border-line">
         <nav className="max-w-6xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <a href="#hero" className="text-2xl font-extrabold tracking-tight bg-clip-text gradient-text heading"> <span className="text-transparent gradient-text">Lahiru'sDev</span></a>
-            <div className="hidden md:flex space-x-6 items-center">
-              <a href="#about" className="text-gray-700 hover:text-primary font-medium transition">About</a>
-              <a href="#skills" className="text-gray-700 hover:text-primary font-medium transition">Skills</a>
-              <a href="#projects" className="text-gray-700 hover:text-primary font-medium transition">Projects</a>
-              <a href="#experience" className="text-gray-700 hover:text-primary font-medium transition">Experience</a>
-              <a href="#contact" className="text-gray-700 hover:text-primary font-medium transition">Contact</a>
+            <a href="#hero" className="font-mono text-lg font-medium text-ink">
+              <span className="text-accent">~</span>/lahiru<span className="text-accent">.dev</span>
+            </a>
+
+            <div className="hidden md:flex space-x-8 items-center font-mono text-sm">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} className="text-muted hover:text-accent transition-colors">
+                  <span className="text-accent/60">./</span>{link.label}
+                </a>
+              ))}
             </div>
-            <div className="flex items-center gap-3">
-              <a href="https://github.com" className="text-gray-600 hover:text-gray-900 transition"><GithubIcon /></a>
-              <a href="https://linkedin.com" className="text-gray-600 hover:text-gray-900 transition"><LinkedInIcon /></a>
-              <a href="mailto:lahiru@example.com" className="inline-flex items-center px-4 py-2 rounded-lg text-white font-semibold gradient-btn shadow hover:opacity-95">Contact</a>
+
+            <div className="hidden md:flex items-center gap-4">
+              <a href="https://github.com/lahirudasun777" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors"><GithubIcon /></a>
+              <a href="https://www.linkedin.com/in/lahiru-dasun-0a4898224/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors"><LinkedInIcon /></a>
+              <a href="#contact" className="inline-flex items-center px-4 py-2 rounded-lg font-semibold text-sm btn-accent transition-colors">Contact</a>
             </div>
+
+            <button
+              className="md:hidden text-ink"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {open ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
+
+          {open && (
+            <div className="md:hidden mt-4 pb-2 flex flex-col gap-4 font-mono text-sm border-t border-line pt-4">
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="text-muted hover:text-accent transition-colors">
+                  <span className="text-accent/60">./</span>{link.label}
+                </a>
+              ))}
+              <div className="flex items-center gap-4 pt-2">
+                <a href="https://github.com/lahirudasun777" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors"><GithubIcon /></a>
+                <a href="https://www.linkedin.com/in/lahiru-dasun-0a4898224/" target="_blank" rel="noopener noreferrer" className="text-muted hover:text-ink transition-colors"><LinkedInIcon /></a>
+                <a href="#contact" onClick={() => setOpen(false)} className="inline-flex items-center px-4 py-2 rounded-lg font-semibold text-sm btn-accent transition-colors">Contact</a>
+              </div>
+            </div>
+          )}
         </nav>
       </div>
     </header>
