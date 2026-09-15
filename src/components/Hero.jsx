@@ -11,8 +11,23 @@ const Hero = () => (
     id="hero"
     className="relative min-h-screen flex items-center pt-32 pb-16 border-b border-line overflow-hidden"
   >
-    <div className="max-w-6xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-14 items-center">
+    <div className="relative z-10 max-w-6xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-14 items-center">
       <div className="fade-in-up">
+        <div className="relative inline-block mb-6">
+          <div className="absolute -inset-5 rounded-full bg-accent/20 blur-3xl" />
+          <div className="relative w-32 sm:w-36 rounded-2xl border border-line bg-gradient-to-b from-surface2 to-surface overflow-hidden shadow-[0_20px_45px_-15px_rgba(0,0,0,0.6)]">
+            <img
+              src="/profile-cutout.png"
+              alt="Lahiru Dasun"
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="absolute -bottom-2.5 -right-2.5 chip flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+            available
+          </div>
+        </div>
+
         <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-line bg-surface font-mono text-xs text-accent">
           <span className="w-1.5 h-1.5 rounded-full bg-accent" />
           backend &amp; devops engineer
